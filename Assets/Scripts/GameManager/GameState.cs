@@ -43,6 +43,7 @@ public class GameState : MonoBehaviour {
 		GameUI.SetActive(false);
 		MenuUI.SetActive(true);
 
+		gameSystem.StopGame();
 		audioController.StartMenuMusic();
 	}
 

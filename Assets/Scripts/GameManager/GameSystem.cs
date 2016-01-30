@@ -56,7 +56,9 @@ public class GameSystem : MonoBehaviour {
 		hpCounterText.text = string.Format("Chance: {0}", hitpoints);
 		comboCounterText.text = "";
 
-		stepGuides = GameObject.FindGameObjectsWithTag("StepMoves");
+		if (stepGuides == null) {
+			stepGuides = GameObject.FindGameObjectsWithTag("StepMoves");
+		}
 
 		for (int c = 0, limit = stepGuides.Length; c < limit; ++c) {
 			stepGuides[c].SetActive(false);
@@ -82,6 +84,15 @@ public class GameSystem : MonoBehaviour {
 
 
 		isStart = true;
+	}
+
+	/// <summary>
+	/// Stops the game.
+	/// </summary>
+	public void StopGame()
+	{
+		ResetCounters();
+		isStart = false;
 	}
 
 	/// <summary>
