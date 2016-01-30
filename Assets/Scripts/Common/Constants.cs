@@ -16,5 +16,12 @@ public static class Constants {
 	public static string TIME_COUNTER = "TimeCounter";
 	public static string COMBO_COUNTER = "ComboCounter";
 	public static string SCORE_COUNTER = "ScoreCounter";
+	public static string GAME_OVER = "GameOverTitle";
+
+	// Player Settings
+	public static int MAX_HP = 25;
+	public static int SCORE_POINTS = 5;
+	public static float TEST_MAX_TIME = 3F;
+	public static float MAX_TIME = 181F;
 
 }

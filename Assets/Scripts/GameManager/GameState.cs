@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class GameState : MonoBehaviour {
@@ -14,6 +15,8 @@ public class GameState : MonoBehaviour {
 	/// </summary>
 	void Start()
 	{
+		GameObject.Find(Constants.GAME_OVER).GetComponent<Text>().enabled = false;
+
 		MenuUI.SetActive(true);
 		GameUI.SetActive(false);
 		AboutUI.SetActive(false);
