@@ -56,7 +56,6 @@ public class GameSystem : MonoBehaviour {
 
 		timeCounterText = GameObject.Find(Constants.TIME_COUNTER).GetComponent<Text>();
 		comboCounterText = GameObject.Find(Constants.COMBO_COUNTER).GetComponent<Text>();
-		scoreCounterText = GameObject.Find(Constants.SCORE_COUNTER).GetComponent<Text>();
 
 		ResetCounters();
 		InitializeCounters();

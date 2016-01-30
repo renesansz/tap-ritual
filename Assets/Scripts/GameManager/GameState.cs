@@ -9,6 +9,7 @@ public class GameState : MonoBehaviour {
 	public GameObject MenuUI;
 	public GameObject AboutUI;
 	public GameObject HighScoreUI;
+	public AudioController audioController;
 
 	/// <summary>
 	/// On start game.
@@ -29,6 +30,7 @@ public class GameState : MonoBehaviour {
 		MenuUI.SetActive(false);
 		GameUI.SetActive(true);
 		gameSystem.StartGame();
+		audioController.StartDanceMusic();
 	}
 
 	/// <summary>
@@ -39,6 +41,8 @@ public class GameState : MonoBehaviour {
 		AboutUI.SetActive(false);
 		GameUI.SetActive(false);
 		MenuUI.SetActive(true);
+
+		audioController.StartMenuMusic();
 	}
 
 	/// <summary>
@@ -48,6 +52,8 @@ public class GameState : MonoBehaviour {
 	{
 		MenuUI.SetActive(false);
 		AboutUI.SetActive(true);
+
+		audioController.StartAboutMusic();
 	}
 
 	/// <summary>
@@ -57,6 +63,8 @@ public class GameState : MonoBehaviour {
 	{
 		MenuUI.SetActive(false);
 		HighScoreUI.SetActive(true);
+
+		audioController.StartHighScoreMusic();
 	}
 
 }
