@@ -6,9 +6,13 @@ public class GameSystem : MonoBehaviour {
 	int score;
 	int combo;
 	int hitpoints;
+	int currentStep;
+	int danceSteps;
 	float timeRemaining;
 	bool isStart = false;
 	bool isPreviousCorrect = false;
+
+	GameObject[] stepGuides;
 
 	Text timeCounterText;
 	Text comboCounterText;
@@ -20,6 +24,10 @@ public class GameSystem : MonoBehaviour {
 	/// </summary>
 	void GenerateSteps()
 	{
+		currentStep = Random.Range(0, 4);
+		stepGuides[currentStep].SetActive(true);
+
+		Debug.Log(currentStep);
 	}
 
 	/// <summary>
@@ -44,10 +52,17 @@ public class GameSystem : MonoBehaviour {
 		hitpoints = Constants.MAX_HP;
 
 		// Initialize UI
-		scoreCounterText.text = score.ToString();
-		hpCounterText.text = hitpoints.ToString();
+		scoreCounterText.text = string.Format("Score: {0}", score);
+		hpCounterText.text = string.Format("Chance: {0}", hitpoints);
 		comboCounterText.text = "";
-	
+
+		stepGuides = GameObject.FindGameObjectsWithTag("StepMoves");
+
+		for (int c = 0, limit = stepGuides.Length; c < limit; ++c) {
+			stepGuides[c].SetActive(false);
+		}
+
+		GenerateSteps();
 
 	}
 
@@ -56,10 +71,10 @@ public class GameSystem : MonoBehaviour {
 	/// </summary>
 	public void StartGame()
 	{
-
-		timeCounterText = GameObject.Find(Constants.TIME_COUNTER).GetComponent<Text>();
+		
 		comboCounterText = GameObject.Find(Constants.COMBO_COUNTER).GetComponent<Text>();
 		scoreCounterText = GameObject.Find(Constants.SCORE_COUNTER).GetComponent<Text>();
+		timeCounterText = GameObject.Find(Constants.TIME_COUNTER).GetComponent<Text>();
 		hpCounterText = GameObject.Find(Constants.HP_COUNTER).GetComponent<Text>();
 
 		ResetCounters();
@@ -75,11 +90,13 @@ public class GameSystem : MonoBehaviour {
 	void FixedUpdate()
 	{
 		if (isStart) {
-			Debug.Log ("Timer ticking...");
+			//Debug.Log ("Timer ticking...");
 
 			// Time's UP!
 			if (timeRemaining < 1F) {
 				Debug.Log ("Timer Ended");
+				isStart = false;
+				return;
 			}
 
 			int minutes = Mathf.FloorToInt (timeRemaining / 60F);
@@ -90,7 +107,7 @@ public class GameSystem : MonoBehaviour {
 
 			timeRemaining -= Time.deltaTime;
 
-			Debug.Log("Time remaining: " + timeRemaining.ToString ());
+			//Debug.Log("Time remaining: " + timeRemaining.ToString ());
 
 		}
 	}
@@ -100,6 +117,8 @@ public class GameSystem : MonoBehaviour {
 	/// </summary>
 	void AddPoints()
 	{
+		Debug.Log("Add Points");
+
 		// Check for next combo
 		if (isPreviousCorrect) {
 			combo++;
@@ -108,14 +127,8 @@ public class GameSystem : MonoBehaviour {
 			isPreviousCorrect = true;
 		}
 
-		if (hitpoints < Constants.MAX_HP) {
-			hitpoints++;
-			hpCounterText.text = hitpoints.ToString();
-		}
-
 		score += (Constants.SCORE_POINTS * combo);
-		scoreCounterText.text = score.ToString();
-
+		scoreCounterText.text = string.Format("Score: {0}", score);
 	}
 
 	/// <summary>
@@ -123,6 +136,7 @@ public class GameSystem : MonoBehaviour {
 	/// </summary>
 	void SubtractPoints()
 	{
+		Debug.Log("Subtract Points");
 		if (isPreviousCorrect) {
 			isPreviousCorrect = false;
 			combo = 1;
@@ -130,16 +144,15 @@ public class GameSystem : MonoBehaviour {
 		}
 
 		if (hitpoints == 0) {
-			EndGame ();
-			return;
+			EndGame();
 		} else {
 			hitpoints--;
-			hpCounterText.text = hitpoints.ToString();
+			hpCounterText.text = string.Format("Chance: {0}", hitpoints);
 		}
 
 		if (score > 0) {
 			score -= Constants.SCORE_POINTS;
-			scoreCounterText.text = score.ToString ();
+			scoreCounterText.text = string.Format("Score: {0}", score);
 		}
 	}
 
@@ -158,7 +171,15 @@ public class GameSystem : MonoBehaviour {
 	/// </summary>
 	public void DoMove1() {
 		Debug.Log("start DoMove1()");
-		AddPoints();
+
+		if (currentStep == 0) {
+			AddPoints();
+		} else {
+			SubtractPoints();
+		}
+
+		stepGuides[currentStep].SetActive(false);
+		GenerateSteps();
 	}
 
 	/// <summary>
@@ -166,7 +187,15 @@ public class GameSystem : MonoBehaviour {
 	/// </summary>
 	public void DoMove2() {
 		Debug.Log("start DoMove2()");
-		AddPoints();
+
+		if (currentStep == 1) {
+			AddPoints();
+		} else {
+			SubtractPoints();
+		}
+
+		stepGuides[currentStep].SetActive(false);
+		GenerateSteps();
 	}
 
 	/// <summary>
@@ -174,7 +203,15 @@ public class GameSystem : MonoBehaviour {
 	/// </summary>
 	public void DoMove3() {
 		Debug.Log("start DoMove3()");
-		SubtractPoints();
+
+		if (currentStep == 2) {
+			AddPoints();
+		} else {
+			SubtractPoints();
+		}
+
+		stepGuides[currentStep].SetActive(false);
+		GenerateSteps();
 	}	
 
 	/// <summary>
@@ -182,7 +219,15 @@ public class GameSystem : MonoBehaviour {
 	/// </summary>
 	public void DoMove4() {
 		Debug.Log("start DoMove4()");
-		SubtractPoints();
+
+		if (currentStep == 3) {
+			AddPoints();
+		} else {
+			SubtractPoints();
+		}
+
+		stepGuides[currentStep].SetActive(false);
+		GenerateSteps();
 	}	
 
 	/// <summary>
@@ -190,7 +235,15 @@ public class GameSystem : MonoBehaviour {
 	/// </summary>
 	public void DoMove5() {
 		Debug.Log("start DoMove5()");
-		AddPoints();
+
+		if (currentStep == 4) {
+			AddPoints();
+		} else {
+			SubtractPoints();
+		}
+
+		stepGuides[currentStep].SetActive(false);
+		GenerateSteps();
 	}
 
 }

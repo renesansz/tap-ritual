@@ -38,6 +38,7 @@ public class GameState : MonoBehaviour {
 	/// </summary>
 	public void GoToMenu()
 	{
+		HighScoreUI.SetActive(false);
 		AboutUI.SetActive(false);
 		GameUI.SetActive(false);
 		MenuUI.SetActive(true);
@@ -50,6 +51,7 @@ public class GameState : MonoBehaviour {
 	/// </summary>
 	public void GoToAbout()
 	{
+		HighScoreUI.SetActive(false);
 		MenuUI.SetActive(false);
 		AboutUI.SetActive(true);
 
@@ -61,6 +63,7 @@ public class GameState : MonoBehaviour {
 	/// </summary>
 	public void GotoHighScore()
 	{
+		GameUI.SetActive(false);
 		MenuUI.SetActive(false);
 		HighScoreUI.SetActive(true);
 

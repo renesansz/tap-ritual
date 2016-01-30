@@ -18,6 +18,7 @@ public static class Constants {
 	public static string SCORE_COUNTER = "ScoreCounter";
 	public static string GAME_OVER = "GameOverTitle";
 	public static string HP_COUNTER = "HitPointsCounter";
+	public static string STEP_GUIDES = "StepMoves";
 
 	// Player Settings
 	public static int MAX_HP = 25;

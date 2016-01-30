@@ -8,6 +8,7 @@ TagManager:
   - GameUI
   - AboutUI
   - HighScoreUI
+  - StepMoves
   layers:
   - Default
   - TransparentFX
