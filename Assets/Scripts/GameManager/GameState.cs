@@ -3,10 +3,22 @@ using System.Collections;
 
 public class GameState : MonoBehaviour {
 
+	public GameSystem gameSystem;
 	public GameObject GameUI;
 	public GameObject MenuUI;
 	public GameObject AboutUI;
 	public GameObject HighScoreUI;
+
+	/// <summary>
+	/// On start game.
+	/// </summary>
+	void Start()
+	{
+		MenuUI.SetActive(true);
+		GameUI.SetActive(false);
+		AboutUI.SetActive(false);
+		HighScoreUI.SetActive(false);
+	}
 
 	/// <summary>
 	/// Start game state.
@@ -15,6 +27,7 @@ public class GameState : MonoBehaviour {
 	{
 		MenuUI.SetActive(false);
 		GameUI.SetActive(true);
+		gameSystem.StartGame();
 	}
 
 	/// <summary>

@@ -6,4 +6,15 @@ public static class Constants {
 	// Playerprefs
 	public static string HIGH_SCORE = "TR_HIGH_SCORE";
 
+	// General UI tags
+	public static string MENU_UI = "MenuUI";
+	public static string GAME_UI = "GameUI";
+	public static string ABOUT_UI = "AboutUI";
+	public static string HIGHSCORE_UI = "HighScoreUI";
+
+	// Game UI Tags
+	public static string TIME_COUNTER = "TimeCounter";
+	public static string COMBO_COUNTER = "ComboCounter";
+	public static string SCORE_COUNTER = "ScoreCounter";
+
 }
