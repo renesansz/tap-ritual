@@ -13,9 +13,10 @@ public class GameSystem : MonoBehaviour {
 	Text timeCounterText;
 	Text comboCounterText;
 	Text scoreCounterText;
+	Text hpCounterText;
 
 	/// <summary>
-	/// Generate dance steps.
+	/// Generates the steps.
 	/// </summary>
 	void GenerateSteps()
 	{
@@ -44,7 +45,9 @@ public class GameSystem : MonoBehaviour {
 
 		// Initialize UI
 		scoreCounterText.text = score.ToString();
+		hpCounterText.text = hitpoints.ToString();
 		comboCounterText.text = "";
+	
 
 	}
 
@@ -56,6 +59,8 @@ public class GameSystem : MonoBehaviour {
 
 		timeCounterText = GameObject.Find(Constants.TIME_COUNTER).GetComponent<Text>();
 		comboCounterText = GameObject.Find(Constants.COMBO_COUNTER).GetComponent<Text>();
+		scoreCounterText = GameObject.Find(Constants.SCORE_COUNTER).GetComponent<Text>();
+		hpCounterText = GameObject.Find(Constants.HP_COUNTER).GetComponent<Text>();
 
 		ResetCounters();
 		InitializeCounters();
@@ -85,7 +90,7 @@ public class GameSystem : MonoBehaviour {
 
 			timeRemaining -= Time.deltaTime;
 
-			Debug.Log ("Time remaining: " + timeRemaining.ToString ());
+			Debug.Log("Time remaining: " + timeRemaining.ToString ());
 
 		}
 	}
@@ -105,6 +110,7 @@ public class GameSystem : MonoBehaviour {
 
 		if (hitpoints < Constants.MAX_HP) {
 			hitpoints++;
+			hpCounterText.text = hitpoints.ToString();
 		}
 
 		score += (Constants.SCORE_POINTS * combo);
@@ -128,7 +134,7 @@ public class GameSystem : MonoBehaviour {
 			return;
 		} else {
 			hitpoints--;
-			GameObject.Find("HitPoints").GetComponent<Text>().text = hitpoints.ToString();
+			hpCounterText.text = hitpoints.ToString();
 		}
 
 		if (score > 0) {
