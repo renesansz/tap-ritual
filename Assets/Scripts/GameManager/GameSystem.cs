@@ -45,7 +45,6 @@ public class GameSystem : MonoBehaviour {
 		// Initialize UI
 		scoreCounterText.text = score.ToString();
 		comboCounterText.text = "";
-		GameObject.Find("HitPoints").GetComponent<Text>().text = hitpoints.ToString();
 
 	}
 
@@ -107,7 +106,6 @@ public class GameSystem : MonoBehaviour {
 
 		if (hitpoints < Constants.MAX_HP) {
 			hitpoints++;
-			GameObject.Find("HitPoints").GetComponent<Text>().text = hitpoints.ToString();
 		}
 
 		score += (Constants.SCORE_POINTS * combo);
